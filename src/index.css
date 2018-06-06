@@ -3,3 +3,21 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+label{
+  font-weight: bold;
+  color: black;
+  width: 70px;
+}
+
+p{
+  color: darkgray;
+}
+
+h3 {
+  text-align: center;
+}
+
+index{
+  background-color: paleturquoise;
+}
