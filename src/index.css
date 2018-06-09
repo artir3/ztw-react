@@ -7,7 +7,7 @@ body {
 label{
   font-weight: bold;
   color: black;
-  width: 70px;
+  width: 100px;
 }
 
 p{
@@ -21,3 +21,4 @@ h3 {
 index{
   background-color: paleturquoise;
 }
+
