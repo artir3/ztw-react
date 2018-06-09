@@ -1,9 +1,6 @@
-import {Redirect} from 'react-router';
-
-
 import Api from './Api';
 
-class UsersApi {
+class ApiImpl {
     all = [];
     isLoading = false;
 
@@ -36,9 +33,18 @@ class UsersApi {
                 localStorage.setItem('token', data.authorisationToken);
                 let b = data.authorisationToken !== null;
                 localStorage.setItem('isloged', b.toString());
+                this.loginUser(data);
             });
-            // const { req } = body.data;
         }
+    }
+
+
+    loginUser(data) {
+        localStorage.setItem('u_id', data.id);
+        localStorage.setItem('u_name', data.name);
+        localStorage.setItem('u_surname', data.surname);
+        localStorage.setItem('u_email', data.email);
+        localStorage.setItem('u_city', data.city);
     }
 
     async find(path, contactId) {
@@ -66,4 +72,4 @@ class UsersApi {
 }
 
 
-export default new UsersApi();
+export default new ApiImpl();

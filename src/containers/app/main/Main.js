@@ -4,7 +4,7 @@ import Contact from "../../../components/contact/Contact";
 import Home from '../../home/Home'
 import './Main.css'
 import Login from "../login/Login";
-import Register from "../register/Register";
+import Profile from "../../profile/Profile";
 
 const Main = (props) => (
     <main className="Main">
@@ -12,8 +12,10 @@ const Main = (props) => (
             <Route exact path='/' component={Home}/>
             <Route path='/home/' component={Home}/>
             <Route path='/contact' component={Contact}/>
-            <Route path='/register' component={Register}/>
+            <Route path='/register' component={Profile}/>
             <Route path='/login' component={Login}/>
+            <Route path='/profile' component={Profile}/>
+
         </Switch>
     </main>
 )

@@ -20,11 +20,10 @@ class App extends PureComponent {
     }
 
     logOut = () => {
-        let b = !this.store.authenticated;
-        // localStorage.setItem('isloged', b.toString());
+        this.store.authentication_token=false;
+        this.store.authenticated=false;
         localStorage.clear();
         this.toggleLoggingModal();
-        // this.props.history.push("/login/");
     }
 
     toggleLoggingModal = () => {
@@ -39,7 +38,6 @@ class App extends PureComponent {
                             logOut={this.logOut}
                             toggleLoggingModal={this.toggleLoggingModal}/>
                     <Main />
-                    <p>{this.store.authenticated}{this.store.authentication_token}</p>
                 </Auth.Provider>
             </div>
         )

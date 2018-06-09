@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import '../login/Login.css';
-import UsersApi from '../../../api/UsersApi';
+import UsersApi from '../../../api/ApiImpl';
 
 const Api = UsersApi;
 
-class Register extends Component {
+class Restaurant extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +20,7 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="Register">
+            <div className="Restaurant">
                 <form onSubmit={this.handleSubmit} onReset={this.handleReset}>
                     <div>
                         <label>Name:</label>
@@ -103,4 +103,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default Restaurant;
