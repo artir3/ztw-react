@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import '../login/Login.css';
-import UsersApi from '../../../api/ApiImpl';
+import UsersApi from '../../api/ApiImpl';
 
 const Api = UsersApi;
 
@@ -9,98 +8,77 @@ class Restaurant extends Component {
         super(props);
         this.state = {
             id: 0,
-            city: "",
-            email: "",
+            description: "",
+            menu: "",
             name: "",
-            surname: "",
-            pass: "",
-            repeat_pass: ""
-        };
-    }
+            localization_id: 0,
+            categories: [],
+            employees: [],
+            tables: []
+        }
 
-    render() {
-        return (
-            <div className="Restaurant">
-                <form onSubmit={this.handleSubmit} onReset={this.handleReset}>
-                    <div>
-                        <label>Name:</label>
-                        <input type="text" name="name" value={this.state.name}
-                               onChange={this.handleLoginChange.bind(this)}/>
-                    </div>
-                    <div>
-                        <label>Surname:</label>
-                        <input type="text" name="surname" value={this.state.surname}
-                               onChange={this.handleLoginChange.bind(this)}/>
-                    </div>
-                    <div>
-                        <label>Password:</label>
-                        <input type="password" name="pass" value={this.state.pass}
-                               onChange={this.handleLoginChange.bind(this)}/>
-                    </div>
-                    <div>
-                        <label>Repeat password:</label>
-                        <input type="password" name="repeat_pass" value={this.state.repeat_pass}
-                               onChange={this.handleLoginChange.bind(this)}/>
-                    </div>
-                    <div>
-                        <label>Email:</label>
-                        <input type="email" name="email" value={this.state.email}
-                               onChange={this.handleLoginChange.bind(this)}/>
-                    </div>
-                    <div>
-                        <label>City:</label>
-                        <input type="text" name="city" value={this.state.city}
-                               onChange={this.handleLoginChange.bind(this)}/>
-                    </div>
-                    <div>
-                        <input type="submit" value="Register"/>
-                        <input type="reset" value="Cancel"/>
-                    </div>
-                </form>
-            </div>
-        )
-    }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        if (this.state.pass.valueOf() === this.state.repeat_pass.valueOf()) {
-            alert("Zarejestrowano");
-            Api.push("users",{
-                email: this.state.email,
-                city: this.state.city,
-                id: 0,
-                name: this.state.name,
-                password: this.state.pass,
-                surname: this.state.surname
+        render(){
+            return (
+                <ProfileForm
+                    id={this.state.id}
+                    description={this.state.description}
+                    menu={this.state.menu}
+                    name={this.state.name}
+                    localization={this.state.localization_id}
+                    cat={this.state.categories}
+                    employ={this.state.employees}
+                    tables={this.state.tables}
+                    submit={(e) => this.handleSubmit(e)}
+                    reset={(e) => this.handleReset(e)}
+                    fieldChange={(e) => this.handleFieldChange(e)}
+                />
+            )
+        }
+
+        handleSubmit = (event) => {
+            // event.preventDefault();
+            // if (this.state.id === null || "" === this.state.id)
+            //     this.newUsersEvent();
+            // else
+            //     this.updateUserEvent();
+        }
+
+        // newUsersEvent = () => {
+        //     if (this.state.pass.valueOf() === this.state.repeat_pass.valueOf()) {
+        //         Api.push("users", {
+        //             email: this.state.email,
+        //             city: this.state.city,
+        //             id: 0,
+        //             name: this.state.name,
+        //             password: this.state.pass,
+        //             surname: this.state.surname
+        //         });
+        //         this.handleReset();
+        //         alert("Zarejestrowano");
+        //         this.props.history.push("/login/");
+        //     } else {
+        //         alert("Write dow corect values");
+        //     }
+        // }
+
+        handleReset = () => {
+            this.setState({
+                // id: "",
+                // city: "",
+                // email: "",
+                // name: "",
+                // surname: "",
             });
-            this.handleReset();
-            this.props.history.push("/login/");
-        } else {
-            alert("Write dow corect values");
+        };
+
+        handleFieldChange = (event) => {
+            const target = event.target;
+            const value = target.value;
+            const name = target.name;
+            this.setState({
+                [name]: value
+            });
         }
     }
-
-    handleReset = () => {
-        this.setState({
-            id: 0,
-            city: "",
-            email: "",
-            name: "",
-            surname: "",
-            pass: "",
-            repeat_pass: ""
-        });
-    }
-
-    handleLoginChange = (event) => {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: value
-        });
-    }
-}
-
-export default Restaurant;
+    export default Restaurant;
